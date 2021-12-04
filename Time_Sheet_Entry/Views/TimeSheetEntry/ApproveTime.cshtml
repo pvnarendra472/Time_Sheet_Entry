@@ -1,0 +1,97 @@
+﻿@model IEnumerable<TimeSheetEntry>
+
+@{
+    ViewData["Title"] = "Approve time";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="ApproveTime">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(m =>m.EmployeeName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m =>m.EmployeeId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m =>m.WorkDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m =>m.StartTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m =>m.EndTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m =>m.Approved)
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+
+
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(m =>@Model.ToList()[i].EmployeeName)
+                                @Html.DisplayFor(m =>@Model.ToList()[i].EmployeeName)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(m =>@Model.ToList()[i].EmployeeId)
+                                @Html.DisplayFor(m =>@Model.ToList()[i].EmployeeId)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(m =>@Model.ToList()[i].WorkDate)
+                                @Html.DisplayFor(m =>@Model.ToList()[i].WorkDate)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(m =>@Model.ToList()[i].StartTime)
+                                @Html.DisplayFor(m =>@Model.ToList()[i].StartTime)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(m =>@Model.ToList()[i].EndTime)
+                                @Html.DisplayFor(m =>@Model.ToList()[i].EndTime)
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m =>@Model.ToList()[i].Approved)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(modelItem => @Model.ToList()[i].Id)
+                                @Html.HiddenFor(modelItem => @Model.ToList()[i].ManagerId)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button input type="submit" value="Edit" id="approvebtn">Approve</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{
+<script>
+    if(@Model.Count()==0){
+        document.getElementById("approvebtn").disabled = true;
+    }
+    else{
+        document.getElementById("approvebtn").disabled = false;
+    }
+</script>
+
+
+
+
+}
+
